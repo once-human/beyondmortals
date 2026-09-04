@@ -1,48 +1,102 @@
-import React from "react";
-import { TallyMark, Wordmark } from "@/design-system";
-import { LORE_VIGNETTES } from "@/lib/brand/lore";
+import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
 
-/**
- * BEYOND MORTALS — The Record Route (/the-record)
- * 
- * Scroll-based documentary timeline skeleton.
- */
+export const metadata: Metadata = {
+  title: "The Record — Beyond Mortals",
+  description:
+    "There are records of people who stopped dying. None of them agree on why.",
+};
+
 export default function TheRecordPage() {
   return (
-    <div className="py-16 md:py-24 space-y-24 max-w-4xl mx-auto">
-      {/* Header Record Intro */}
-      <div className="text-center space-y-6">
-        <TallyMark size={48} className="mx-auto" />
-        <Wordmark size="lg" />
-        <h1 className="font-display text-4xl sm:text-6xl text-brand-bone tracking-tight font-normal">
-          THE RECORD
-        </h1>
-        <p className="font-mono text-xs text-brand-bone-dim tracking-[0.2em] uppercase">
-          [ UNCLOSED ARCHIVAL TIMELINE SKELETON ]
-        </p>
-      </div>
+    <div className="min-h-dvh flex flex-col">
+      {/* ── Navigation ──────────────────────────────────────── */}
+      <header
+        className="fixed inset-x-0 top-0 z-50"
+        style={{ backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}
+      >
+        <div className="container flex items-center justify-between h-16 md:h-20">
+          <Link href="/" aria-label="Beyond Mortals — Home">
+            <Image
+              src="/brand/wordmark.svg"
+              alt="Beyond Mortals"
+              width={160}
+              height={20}
+              priority
+              className="h-4 md:h-5 w-auto invert"
+            />
+          </Link>
 
-      {/* Vignettes Preview Skeleton */}
-      <div className="space-y-16 border-l border-brand-hairline pl-6 sm:pl-10 ml-4 sm:ml-8">
-        {LORE_VIGNETTES.slice(0, 3).map((vignette) => (
-          <div key={vignette.id} className="space-y-4 relative group">
-            {/* Timeline dot */}
-            <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 w-3 h-3 rounded-full bg-brand-surface border border-brand-hairline group-hover:border-brand-crimson group-hover:bg-brand-crimson transition-colors" />
+          <nav className="flex items-center gap-8">
+            <Link
+              href="/the-record"
+              className="text-xs tracking-[0.12em] uppercase transition-colors duration-300"
+              style={{ fontFamily: "var(--font-sans)", color: "var(--color-text)" }}
+            >
+              The Record
+            </Link>
+            <Link
+              href="/collection"
+              className="text-xs tracking-[0.12em] uppercase text-[var(--color-text-muted)] transition-colors duration-300 hover:text-[var(--color-text)]"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              Collection
+            </Link>
+          </nav>
+        </div>
 
-            <div className="font-mono text-[10px] text-brand-crimson tracking-[0.2em]">
-              [{vignette.archiveLabel}]
-            </div>
-            <h2 className="font-display text-2xl text-brand-bone">
-              {vignette.number} — {vignette.title}
-            </h2>
-            <div className="space-y-2 text-sm text-brand-bone-muted font-sans leading-relaxed">
-              {vignette.content.map((paragraph, idx) => (
-                <p key={idx}>{paragraph}</p>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+        <div
+          className="h-px w-full"
+          style={{ background: "var(--color-border)" }}
+        />
+      </header>
+
+      {/* ── Main ────────────────────────────────────────────── */}
+      <main className="flex-1 pt-32 md:pt-40 pb-24">
+        <div className="container max-w-[720px]">
+          <h1
+            className="text-5xl md:text-7xl leading-none mb-24"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontWeight: 300,
+              letterSpacing: "-0.03em",
+              color: "var(--color-text)",
+            }}
+          >
+            The Record
+          </h1>
+
+          {/* Skeleton — content will be built here */}
+        </div>
+      </main>
+
+      {/* ── Footer ──────────────────────────────────────────── */}
+      <footer>
+        <div
+          className="h-px w-full"
+          style={{ background: "var(--color-border)" }}
+        />
+        <div className="container flex flex-col md:flex-row justify-between items-start md:items-center gap-4 py-8">
+          <Image
+            src="/brand/wordmark.svg"
+            alt="Beyond Mortals"
+            width={120}
+            height={15}
+            className="h-3 w-auto invert opacity-40"
+          />
+
+          <p
+            className="text-[10px] tracking-[0.15em] uppercase"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--color-text-faint)",
+            }}
+          >
+            © {new Date().getFullYear()} Beyond Mortals
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -1,39 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Cormorant_Garamond, JetBrains_Mono } from "next/font/google";
-import "@/design-system/styles/globals.css";
-import { FrameLayout } from "@/design-system";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-cormorant",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-});
+import { fontVariables } from "@/design-system";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "BEYOND MORTALS — Found Mythology",
+  title: "Beyond Mortals",
   description:
-    "Those who came from humanity but outlived humanity's definition of itself. Luxury archival apparel.",
-  keywords: ["Beyond Mortals", "High Fashion", "Luxury Apparel", "The Record"],
-  icons: {
-    icon: "/assets/brand/wordmark_production.svg",
-  },
+    "Those who came from humanity but outlived humanity's definition of itself.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#080808",
+  themeColor: "#0A0A0A",
   colorScheme: "dark",
 };
 
@@ -43,13 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${cormorant.variable} ${jetbrainsMono.variable} dark`}
-    >
-      <body className="bg-brand-canvas text-brand-bone antialiased selection:bg-brand-crimson selection:text-white">
-        <FrameLayout>{children}</FrameLayout>
-      </body>
+    <html lang="en" className={fontVariables}>
+      <body>{children}</body>
     </html>
   );
 }

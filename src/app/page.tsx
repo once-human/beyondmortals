@@ -1,73 +1,80 @@
-import React from "react";
 import Link from "next/link";
-import { TallyMark, Fragment, MarkedFace, Wordmark } from "@/design-system";
+import Image from "next/image";
 
-/**
- * BEYOND MORTALS — Main Homepage Template
- * 
- * Clean, high-fashion boilerplate canvas ready for future page composition.
- * Demonstrates centralized design system token & symbol integration from `@/design-system`.
- */
-export default function HomePage() {
+export default function Home() {
   return (
-    <div className="min-h-[calc(100vh-8rem)] flex flex-col justify-center items-center py-20">
-      {/* Central Archival Template Container */}
-      <div className="w-full max-w-3xl mx-auto flex flex-col items-center text-center space-y-12 px-4">
-        {/* Symbol Trio Anchor */}
-        <div className="flex items-center gap-6 text-brand-bone-dim">
-          <Fragment size={24} className="opacity-40" />
-          <TallyMark size={40} className="text-brand-bone" />
-          <MarkedFace size={24} className="opacity-40" />
-        </div>
+    <div className="min-h-dvh flex flex-col">
+      {/* ── Navigation ──────────────────────────────────────── */}
+      <header
+        className="fixed inset-x-0 top-0 z-50"
+        style={{ backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}
+      >
+        <div className="container flex items-center justify-between h-16 md:h-20">
+          <Link href="/" aria-label="Beyond Mortals — Home">
+            <Image
+              src="/brand/wordmark.svg"
+              alt="Beyond Mortals"
+              width={160}
+              height={20}
+              priority
+              className="h-4 md:h-5 w-auto invert"
+            />
+          </Link>
 
-        {/* Brand Wordmark Stamped */}
-        <div className="space-y-4">
-          <Wordmark size="xl" />
-          <p className="font-mono text-xs text-brand-bone-dim tracking-[0.25em] uppercase">
-            [ ARCHIVAL TEMPLATE & DESIGN SYSTEM READY ]
-          </p>
-        </div>
-
-        {/* Minimal High-Fashion Boundary Line */}
-        <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-brand-crimson to-transparent my-6" />
-
-        {/* Design System Access Demo Card */}
-        <div className="w-full p-8 rounded border border-brand-hairline bg-brand-surface/30 backdrop-blur-sm text-left space-y-6">
-          <div className="flex items-center justify-between border-b border-brand-hairline pb-4">
-            <span className="font-mono text-xs tracking-widest text-brand-bone-muted uppercase">
-              DESIGN SYSTEM STATUS
-            </span>
-            <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-brand-crimson/20 text-brand-crimson border border-brand-crimson/30">
-              INITIALIZED
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono text-brand-bone-muted">
-            <div className="p-3 rounded bg-brand-black/60 border border-brand-hairline">
-              <span className="block text-brand-bone font-medium mb-1">TOKENS</span>
-              <span className="text-[11px] text-brand-bone-dim">@/design-system/tokens</span>
-            </div>
-            <div className="p-3 rounded bg-brand-black/60 border border-brand-hairline">
-              <span className="block text-brand-bone font-medium mb-1">SYMBOLS</span>
-              <span className="text-[11px] text-brand-bone-dim">@/design-system/symbols</span>
-            </div>
-            <div className="p-3 rounded bg-brand-black/60 border border-brand-hairline">
-              <span className="block text-brand-bone font-medium mb-1">LAYOUT</span>
-              <span className="text-[11px] text-brand-bone-dim">@/design-system/components</span>
-            </div>
-          </div>
-
-          <div className="pt-2 flex justify-between items-center text-xs font-mono text-brand-bone-dim">
-            <span>Route: / (Canvas Ready)</span>
+          <nav className="flex items-center gap-8">
             <Link
               href="/the-record"
-              className="text-brand-bone hover:text-brand-crimson transition-colors underline underline-offset-4 decoration-brand-crimson/50"
+              className="text-xs tracking-[0.12em] uppercase text-[var(--color-text-muted)] transition-colors duration-300 hover:text-[var(--color-text)]"
+              style={{ fontFamily: "var(--font-sans)" }}
             >
-              Inspect /the-record →
+              The Record
             </Link>
-          </div>
+            <Link
+              href="/collection"
+              className="text-xs tracking-[0.12em] uppercase text-[var(--color-text-muted)] transition-colors duration-300 hover:text-[var(--color-text)]"
+              style={{ fontFamily: "var(--font-sans)" }}
+            >
+              Collection
+            </Link>
+          </nav>
         </div>
-      </div>
+
+        {/* Hairline */}
+        <div
+          className="h-px w-full"
+          style={{ background: "var(--color-border)" }}
+        />
+      </header>
+
+      {/* ── Main ────────────────────────────────────────────── */}
+      <main className="flex-1" />
+
+      {/* ── Footer ──────────────────────────────────────────── */}
+      <footer>
+        <div
+          className="h-px w-full"
+          style={{ background: "var(--color-border)" }}
+        />
+        <div className="container flex flex-col md:flex-row justify-between items-start md:items-center gap-4 py-8">
+          <Image
+            src="/brand/wordmark.svg"
+            alt="Beyond Mortals"
+            width={120}
+            height={15}
+            className="h-3 w-auto invert opacity-40"
+          />
+
+          <p
+            className="text-[10px] tracking-[0.15em] uppercase"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: "var(--color-text-faint)",
+            }}
+          >
+            © {new Date().getFullYear()} Beyond Mortals
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
